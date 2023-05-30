@@ -1,3 +1,5 @@
+// // A separate script that is being used to import the sample data to DB for inital use
+
 // import mongoose from 'mongoose';
 // import dotenv from 'dotenv';
 // import colors from 'colors';
@@ -15,6 +17,7 @@
 
 // connectDB();
 
+// //import the data
 // const importData = async () => {
 //   try {
 //     await Order.deleteMany();
@@ -42,6 +45,7 @@
 //   }
 // };
 
+// //destroy the data
 // const destroyData = async () => {
 //   try {
 //     await Order.deleteMany();
@@ -56,6 +60,7 @@
 //   }
 // };
 
+// // destroy data if -d flag
 // if (process.argv[2] === '-d') {
 //   destroyData();
 // } else {

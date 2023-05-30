@@ -1,7 +1,29 @@
 main {
   min-height: 80vh;
 }
-.card-body a{
+a {
+  text-decoration: none !important;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+}
+
+h3 {
+  padding: 1rem 0;
+}
+
+.btn-block {
+  margin: 0 auto !important;
+}
+
+.card-body a {
   text-decoration: none;
 }
 
@@ -9,10 +31,6 @@ main {
   margin: 0.03rem;
 }
 
-h3 {
-  padding: 1rem 0;
+.form-select {
+  padding: 12px 12px 12px 24px !important;
 }
-
-/* .list-group-item{
-  padding: 12px 30px !important
-} */
