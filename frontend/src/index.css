@@ -20,7 +20,8 @@ h3 {
 }
 
 .btn-block {
-  margin: 0 auto !important;
+  display: block !important;
+  width: 100% !important;
 }
 
 .card-body a {

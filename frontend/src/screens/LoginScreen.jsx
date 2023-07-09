@@ -16,7 +16,7 @@ const LoginScreen = () => {
   const {loading, error, userInfo} = useSelector((state) => state.userLogin);
 
   const redirect = new URLSearchParams(window.location.search).get('redirect')
-    ? new URLSearchParams(window.location.search).get('redirect')
+    ? `/${new URLSearchParams(window.location.search).get('redirect')}`
     : '/';
 
   //Redirect if already logged in
