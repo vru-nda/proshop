@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {Link, useParams, useNavigate} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import {useSelector, useDispatch} from 'react-redux';
-import {listProductDetils} from '../redux/actions/productActions';
+import { listProductDetails } from '../redux/actions/productActions';
 
-import {Row, Col, Image, ListGroup, Card, Button, Form} from 'react-bootstrap';
-
-import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Rating from '../components/Rating';
 
 const ProductScreen = () => {
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ const ProductScreen = () => {
   const [qty, setQty] = useState(1);
 
   useEffect(() => {
-    dispatch(listProductDetils(params.prodId));
+    dispatch(listProductDetails(params.prodId));
   }, [dispatch, params]);
 
   const addToCartHandler = () => {

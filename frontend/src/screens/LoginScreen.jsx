@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {Form, Button, Row, Col} from 'react-bootstrap';
-import {useDispatch, useSelector} from 'react-redux';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import FormContainer from '../components/FormContainer';
-import {login} from '../redux/actions/userActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import { login } from '../redux/actions/userActions';
 
 const LoginScreen = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const LoginScreen = () => {
     if (userInfo) {
       navigate(redirect);
     }
-  }, [userInfo, redirect]);
+  }, [userInfo, redirect, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();

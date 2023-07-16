@@ -1,25 +1,5 @@
 import mongoose from 'mongoose';
 
-const reviewSchema = mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-
-    rating: {
-      type: Number,
-      required: true,
-    },
-
-    comment: {
-      type: String,
-      required: true,
-    },
-  },
-  {timestamps: true}
-);
-
 const orderSchema = mongoose.Schema(
   {
     user: {
@@ -27,8 +7,7 @@ const orderSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
-
-    orderItem: [
+    orderItems: [
       {
         name: {type: String, required: true},
         qty: {type: Number, required: true},
@@ -41,57 +20,59 @@ const orderSchema = mongoose.Schema(
         },
       },
     ],
-
     shippingAddress: {
       address: {type: String, required: true},
       city: {type: String, required: true},
       postalCode: {type: String, required: true},
       country: {type: String, required: true},
     },
-
-    payment: {
+    paymentMethod: {
       type: String,
       required: true,
     },
-
     paymentResult: {
-      id: {type: String, required: true},
-      status: {type: String, required: true},
-      updateTime: {type: String, required: true},
+      id: {type: String},
+      status: {type: String},
+      update_time: {type: String},
+      email_address: {type: String},
     },
-
-    description: {
-      type: String,
-      required: true,
-    },
-
-    reviews: [reviewSchema],
-
-    avgRating: {
+    taxPrice: {
       type: Number,
       required: true,
-      default: 0,
+      default: 0.0,
     },
-
-    numReviews: {
+    shippingPrice: {
       type: Number,
       required: true,
-      default: 0,
+      default: 0.0,
     },
-
-    price: {
+    totalPrice: {
       type: Number,
       required: true,
-      default: 0,
+      default: 0.0,
     },
-
-    countInStock: {
-      type: Number,
+    isPaid: {
+      type: Boolean,
       required: true,
+      default: false,
+    },
+    paidAt: {
+      type: Date,
+    },
+    isDelivered: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    deliveredAt: {
+      type: Date,
     },
   },
-  {timestamps: true}
+  {
+    timestamps: true,
+  }
 );
 
 const Order = mongoose.model('Order', orderSchema);
+
 export default Order;

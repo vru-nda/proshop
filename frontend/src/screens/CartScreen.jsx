@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Button, Card, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+
 import Message from '../components/Message';
-import {addToCart, removeFromCart} from '../redux/actions/cartActions';
-import {useDispatch, useSelector} from 'react-redux';
-import {Button, Card, Col, Form, Image, ListGroup, Row} from 'react-bootstrap';
+import { addToCart, removeFromCart } from '../redux/actions/cartActions';
 
 const CartScreen = () => {
   const navigate = useNavigate();

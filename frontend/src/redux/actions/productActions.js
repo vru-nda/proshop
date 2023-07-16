@@ -31,7 +31,7 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
-export const listProductDetils = (prodId) => async (dispatch) => {
+export const listProductDetails = (prodId) => async (dispatch) => {
   try {
     dispatch({
       type: PRODUCT_DETAILS_REQUEST,
