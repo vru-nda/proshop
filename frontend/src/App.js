@@ -1,19 +1,22 @@
 import React from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import {Container} from 'react-bootstrap';
-import Header from './components/Header';
 import Footer from './components/Footer';
-import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
+import Header from './components/Header';
+
 import CartScreen from './screens/CartScreen';
+import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import ShippingScreen from './screens/ShippingScreen';
+import OrderScreen from './screens/OrderScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
-import OrderScreen from './screens/OrderScreen';
+import ProductScreen from './screens/ProductScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import ShippingScreen from './screens/ShippingScreen';
+import UserEditScreen from './screens/UserEditScreen';
+import UserListScreen from './screens/UserListScreen';
 
 const App = () => {
   return (
@@ -32,6 +35,11 @@ const App = () => {
             <Route path='/products/:prodId' element={<ProductScreen />} />
             <Route path='/cart/:prodId' element={<CartScreen />} />
             <Route path='/cart' element={<CartScreen />} />
+            <Route path='/admin/users' element={<UserListScreen />} />
+            <Route
+              path='/admin/users/:userId/edit'
+              element={<UserEditScreen />}
+            />
             <Route path='/' element={<HomeScreen />} />
           </Routes>
         </Container>
