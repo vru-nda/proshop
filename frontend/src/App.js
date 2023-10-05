@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {Container} from 'react-bootstrap';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -17,6 +17,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import UserListScreen from './screens/UserListScreen';
+import ProductListScreen from './screens/ProductListScreen';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
             <Route path='/cart/:prodId' element={<CartScreen />} />
             <Route path='/cart' element={<CartScreen />} />
             <Route path='/admin/users' element={<UserListScreen />} />
+            <Route path='/admin/productlist' element={<ProductListScreen />} />
             <Route
               path='/admin/users/:userId/edit'
               element={<UserEditScreen />}
