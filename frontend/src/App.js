@@ -11,13 +11,14 @@ import LoginScreen from './screens/LoginScreen';
 import OrderScreen from './screens/OrderScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
+import ProductListScreen from './screens/ProductListScreen';
 import ProductScreen from './screens/ProductScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import UserListScreen from './screens/UserListScreen';
-import ProductListScreen from './screens/ProductListScreen';
 
 const App = () => {
   return (
@@ -37,7 +38,11 @@ const App = () => {
             <Route path='/cart/:prodId' element={<CartScreen />} />
             <Route path='/cart' element={<CartScreen />} />
             <Route path='/admin/users' element={<UserListScreen />} />
-            <Route path='/admin/productlist' element={<ProductListScreen />} />
+            <Route path='/admin/products' element={<ProductListScreen />} />
+            <Route
+              path='/admin/products/:prodId/edit'
+              element={<ProductEditScreen />}
+            />
             <Route
               path='/admin/users/:userId/edit'
               element={<UserEditScreen />}
