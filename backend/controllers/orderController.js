@@ -64,10 +64,9 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     id,
     status,
     update_time,
-    player: {email_address},
+    payer: {email_address},
   } = req.body;
 
-  console.log('req.body', req.body);
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now();
@@ -78,7 +77,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
       email_address,
     };
 
-    const updatedOrder = await User.save();
+    const updatedOrder = await order.save();
     res.json(updatedOrder);
   } else {
     res.status(404);

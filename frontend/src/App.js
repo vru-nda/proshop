@@ -28,7 +28,7 @@ const App = () => {
       <main className='py-3'>
         <Container>
           <Routes>
-            <Route path='/order/:orderId' element={<OrderScreen />} />
+            <Route path='/orders/:orderId' element={<OrderScreen />} />
             <Route path='/shipping' element={<ShippingScreen />} />
             <Route path='/payment' element={<PaymentMethodScreen />} />
             <Route path='/placeorder' element={<PlaceOrderScreen />} />
