@@ -1,18 +1,26 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {Col, Image, ListGroup, Row} from 'react-bootstrap';
+import {Button, Col, Image, ListGroup, Row} from 'react-bootstrap';
 import {PayPalButton} from 'react-paypal-button-v2';
 import {useDispatch, useSelector} from 'react-redux';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-import {getOrderDetails, payOrderAction} from '../redux/actions/orderActions';
-import {ORDER_PAY_RESET} from '../redux/constants/orderConsts';
+import {
+  deliverOrderAction,
+  getOrderDetails,
+  payOrderAction,
+} from '../redux/actions/orderActions';
+import {
+  ORDER_DELIVER_RESET,
+  ORDER_PAY_RESET,
+} from '../redux/constants/orderConsts';
 import {addDecimals} from '../utils/utilities';
 
 const OrderScreen = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = useParams();
 
   const [sdkReady, setSdkReady] = useState(false);
@@ -23,6 +31,10 @@ const OrderScreen = () => {
   const orderPay = useSelector((state) => state.orderPay);
   const {success: successPay, loading: loadingPay} = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const {success: successDeliver, loading: loadingDeliver} = orderDeliver;
+  const {userInfo} = useSelector((state) => state.userLogin);
+
   if (!loading) {
     // calculate prices
     order.itemsPrice = addDecimals(
@@ -31,6 +43,7 @@ const OrderScreen = () => {
   }
 
   useEffect(() => {
+    if (!userInfo) navigate('/login');
     const addPaypalScript = async () => {
       const {data: clientId} = await axios.get('/api/config/paypal');
       const script = document.createElement('script');
@@ -42,9 +55,16 @@ const OrderScreen = () => {
       };
       document.body.appendChild(script);
     };
+
     // show order details screen for both the cases
-    if (!order || successPay || order?._id !== params.orderId) {
+    if (
+      !order ||
+      successPay ||
+      order?._id !== params.orderId ||
+      successDeliver
+    ) {
       dispatch({type: ORDER_PAY_RESET});
+      dispatch({type: ORDER_DELIVER_RESET});
       dispatch(getOrderDetails(params.orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -53,12 +73,17 @@ const OrderScreen = () => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, order, params, successPay]);
+  }, [dispatch, order, params, successDeliver, successPay]);
 
   const successPaymentHandler = async (paymentResult) => {
     dispatch(payOrderAction(params.orderId, paymentResult));
   };
 
+  const deliverHandler = async () => {
+    dispatch(deliverOrderAction(order));
+  };
+
+  console.log('order', order);
   return loading ? (
     <Loader />
   ) : error ? (
@@ -87,9 +112,9 @@ const OrderScreen = () => {
                 {order?.shippingAddress.postalCode},{' '}
                 {order?.shippingAddress.country}
               </p>
-              {order?.isDelievered ? (
+              {order?.isDelivered ? (
                 <Message variant='success'>
-                  Delievered on: {order?.delieveredAt}
+                  Delievered on: {order?.deliveredAt}
                 </Message>
               ) : (
                 <Message variant='danger'>Not Delievered</Message>
@@ -184,6 +209,21 @@ const OrderScreen = () => {
                 )}
               </ListGroup.Item>
             )}
+            {loadingDeliver && <Loader />}
+            {userInfo &&
+              userInfo.isAdmin &&
+              order.isPaid &&
+              !order.isDelivered && (
+                <ListGroup.Item>
+                  <Button
+                    type='btn'
+                    className='btn btn-block'
+                    onClick={deliverHandler}
+                  >
+                    Mark As Delivered
+                  </Button>
+                </ListGroup.Item>
+              )}
           </ListGroup>
         </Col>
       </Row>
