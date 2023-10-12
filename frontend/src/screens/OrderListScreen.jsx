@@ -6,6 +6,8 @@ import {useNavigate} from 'react-router-dom';
 
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
+
 import {getOrdersList} from '../redux/actions/orderActions';
 
 const OrderListScreen = () => {
@@ -27,7 +29,7 @@ const OrderListScreen = () => {
 
   return (
     <>
-      {/* {successDelete && <Message variant={'danger'}>Order Deleted!</Message>} */}
+      <Meta title={'Orders | Admin'} />
       {error && <Message variant={'danger'}>{error}</Message>}
       {loading ? (
         <Loader />
@@ -80,7 +82,7 @@ const OrderListScreen = () => {
           </Table>
         </>
       ) : (
-        <h2>No User to show</h2>
+        <h2>No Order to show</h2>
       )}
     </>
   );

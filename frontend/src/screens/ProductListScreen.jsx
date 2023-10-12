@@ -7,6 +7,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
+import Meta from '../components/Meta';
 
 import {
   createProduct,
@@ -76,6 +77,7 @@ const ProductListScreen = () => {
 
   return (
     <>
+      <Meta title={'Products | Admin'} />
       <Row className='align-items-center'>
         {loadingDelete && <Loader />}
         {errorDelete && <Message variant='danger'>{errorDelete}</Message>}

@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
-import { Button, Col, Image, ListGroup, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {Button, Col, Image, ListGroup, Row} from 'react-bootstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link, useNavigate} from 'react-router-dom';
 
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
-import { createOrder } from '../redux/actions/orderActions';
-import { addDecimals } from '../utils/utilities';
+import Meta from '../components/Meta';
+
+import {createOrder} from '../redux/actions/orderActions';
+import {addDecimals} from '../utils/utilities';
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -52,6 +54,7 @@ const PlaceOrderScreen = () => {
 
   return (
     <>
+      <Meta title={`Payment Method`} />
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>

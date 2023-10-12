@@ -7,6 +7,8 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
+
 import {
   deliverOrderAction,
   getOrderDetails,
@@ -16,6 +18,7 @@ import {
   ORDER_DELIVER_RESET,
   ORDER_PAY_RESET,
 } from '../redux/constants/orderConsts';
+
 import {addDecimals} from '../utils/utilities';
 
 const OrderScreen = () => {
@@ -73,7 +76,7 @@ const OrderScreen = () => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, order, params, successDeliver, successPay]);
+  }, [dispatch, navigate, order, params, successDeliver, successPay, userInfo]);
 
   const successPaymentHandler = async (paymentResult) => {
     dispatch(payOrderAction(params.orderId, paymentResult));
@@ -83,13 +86,13 @@ const OrderScreen = () => {
     dispatch(deliverOrderAction(order));
   };
 
-  console.log('order', order);
   return loading ? (
     <Loader />
   ) : error ? (
     <Message variant={'error'} />
   ) : (
     <>
+      <Meta title={`Orders | #${order?._id}`} />
       <h1>{`Order #${order?._id}`}</h1>
       <Row>
         <Col md={8}>

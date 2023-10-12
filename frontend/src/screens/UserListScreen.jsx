@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import {deleteUser, getUserList} from '../redux/actions/userActions';
+import Meta from '../components/Meta';
 
 const UserListScreen = () => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const UserListScreen = () => {
         <Loader />
       ) : users?.length > 0 ? (
         <>
+          <Meta title={'Users | Admin'} />
           <h1>Users</h1>
           <Table striped bordered hover responsive className='table-sm'>
             <thead>

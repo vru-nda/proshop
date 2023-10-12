@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Button, Form} from 'react-bootstrap';
+import {useDispatch, useSelector} from 'react-redux';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 
 import FormContainer from '../components/FormContainer';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-import { getUserDetails, updateUser } from '../redux/actions/userActions';
-import { USER_UPDATE_RESET } from '../redux/constants/userConsts';
+import {getUserDetails, updateUser} from '../redux/actions/userActions';
+import {USER_UPDATE_RESET} from '../redux/constants/userConsts';
+import Meta from '../components/Meta';
 
 const UserEditScreen = () => {
   const navigate = useNavigate();
@@ -54,48 +55,51 @@ const UserEditScreen = () => {
       <Link to={'/admin/users'} className='btn btn-light my-3'>
         Go back
       </Link>
-      <FormContainer>
-        <h1>Edit User</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant={'danger'}>{error}</Message>}
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant={'danger'}>{error}</Message>
-        ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group className='mb-5' controlId='name'>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter Name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group className='mb-5' controlId='email'>
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
-                type='email'
-                placeholder='Enter Email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group className='mb-5' controlId='isAdmin'>
-              <Form.Check
-                type='checkbox'
-                checked={isAdmin}
-                label='Is Admin'
-                onChange={(e) => setIsAdmin(e.target.checked)}
-              ></Form.Check>
-            </Form.Group>
-            <Button type='submit' variant='primary'>
-              Update
-            </Button>
-          </Form>
-        )}
-      </FormContainer>
+      <>
+        <Meta title={'Edit User | Admin'} />
+        <FormContainer>
+          <h1>Edit User</h1>
+          {loadingUpdate && <Loader />}
+          {errorUpdate && <Message variant={'danger'}>{error}</Message>}
+          {loading ? (
+            <Loader />
+          ) : error ? (
+            <Message variant={'danger'}>{error}</Message>
+          ) : (
+            <Form onSubmit={submitHandler}>
+              <Form.Group className='mb-5' controlId='name'>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter Name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group className='mb-5' controlId='email'>
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
+                  type='email'
+                  placeholder='Enter Email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group className='mb-5' controlId='isAdmin'>
+                <Form.Check
+                  type='checkbox'
+                  checked={isAdmin}
+                  label='Is Admin'
+                  onChange={(e) => setIsAdmin(e.target.checked)}
+                ></Form.Check>
+              </Form.Group>
+              <Button type='submit' variant='primary'>
+                Update
+              </Button>
+            </Form>
+          )}
+        </FormContainer>
+      </>
     </>
   );
 };

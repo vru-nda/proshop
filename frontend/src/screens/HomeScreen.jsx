@@ -1,13 +1,14 @@
 import React, {useEffect} from 'react';
+import {Col, Row} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
-import {Row, Col} from 'react-bootstrap';
 import {Link, useParams} from 'react-router-dom';
 
-import ProductItem from '../components/ProductItem';
-import Message from '../components/Message';
 import Loader from '../components/Loader';
+import Message from '../components/Message';
+import Meta from '../components/Meta';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
+import ProductItem from '../components/ProductItem';
 
 import {listProducts} from '../redux/actions/productActions';
 
@@ -24,6 +25,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      <Meta />
       {!keyword ? (
         <ProductCarousel />
       ) : (

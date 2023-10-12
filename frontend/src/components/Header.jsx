@@ -2,14 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 
-import {
-  Button,
-  Container,
-  Form,
-  Nav,
-  NavDropdown,
-  Navbar,
-} from 'react-bootstrap';
+import {Container, Nav, NavDropdown, Navbar} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {logout} from '../redux/actions/userActions';
 import SearchBox from './SearchBox';

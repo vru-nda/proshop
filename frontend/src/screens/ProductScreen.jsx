@@ -12,6 +12,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Rating from '../components/Rating';
 import {PRODUCT_CREATE_REVIEW_RESET} from '../redux/constants/productConsts';
+import Meta from '../components/Meta';
 
 const ProductScreen = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ const ProductScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
+          <Meta title={product?.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} className='w-100' alt={product.name} />
