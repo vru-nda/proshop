@@ -5,13 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build": "npm run build --prefix frontend",
     "start": "node backend/app",
     "server": "nodemon backend/app",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "install:all": "npm install && npm install --prefix frontend"
+    "install:all": "npm install && npm install -f --prefix frontend"
   },
   "author": "Joshi Vrunda",
   "license": "ISC",
