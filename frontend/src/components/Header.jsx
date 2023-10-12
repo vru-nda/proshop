@@ -12,6 +12,7 @@ import {
 } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {logout} from '../redux/actions/userActions';
+import SearchBox from './SearchBox';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -32,15 +33,7 @@ const Header = () => {
         </LinkContainer>
         <Navbar.Toggle aria-controls='navbarScroll' />
         <Navbar.Collapse id='navbarScroll'>
-          <Form className='d-flex ms-5'>
-            <Form.Control
-              type='search'
-              placeholder='Search Products..'
-              className='me-2'
-              aria-label='Search'
-            />
-            <Button variant='outline-success'>Search</Button>
-          </Form>
+          <SearchBox />
           <Nav
             className='ms-auto me-3 my-2 my-lg-0'
             style={{maxHeight: '100px'}}
