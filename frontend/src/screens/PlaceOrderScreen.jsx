@@ -7,6 +7,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
 import Meta from '../components/Meta';
 
+import {resetCart} from '../redux/actions/cartActions';
 import {createOrder} from '../redux/actions/orderActions';
 import {addDecimals} from '../utils/utilities';
 
@@ -50,6 +51,7 @@ const PlaceOrderScreen = () => {
       totalPrice: cart.totalPrice,
     };
     dispatch(createOrder(order));
+    dispatch(resetCart());
   };
 
   return (

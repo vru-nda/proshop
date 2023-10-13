@@ -16,12 +16,17 @@ const SearchBox = () => {
   };
 
   return (
-    <Form className='d-flex ms-5' onSubmit={submitHanlder} inline='true'>
+    <Form
+      className='d-flex my-4 my-lg-0 ms-lg-5'
+      onSubmit={submitHanlder}
+      inline='true'
+    >
       <Form.Control
         type='text'
         name='q'
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
+        onFocus={(e) => setKeyword('')}
         placeholder='Search Products..'
         className='mr-sm-2 ml-sm-5'
       />
